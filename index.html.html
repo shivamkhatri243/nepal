@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Incredible Nepal — Culture & Heritage</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --crimson: #8B1A1A;
+    --crimson-dark: #5C1010;
+    --crimson-light: #C0392B;
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-pale: #F5E6C0;
+    --earth: #7B4F2E;
+    --earth-dark: #4A2E1A;
+    --earth-light: #B8835A;
+    --ivory: #FAF6EE;
+    --ivory-dark: #EDE5D4;
+    --charcoal: #2C2218;
+    --charcoal-mid: #4A3728;
+    --text-muted: #7A6248;
+    --forest: #3D6142;
+    --sky: #2E5986;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Crimson Pro', Georgia, serif;
+    background: var(--ivory);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    background: rgba(44,34,24,0.96);
+    backdrop-filter: blur(8px);
+    padding: 0 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--ivory); font-weight: 400; font-style: italic; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem; font-weight: 300;
+    color: var(--ivory-dark);
+    text-decoration: none; letter-spacing: 0.08em;
+    text-transform: uppercase; font-size: 0.78rem;
+    transition: color 0.3s;
+    padding: 4px 0;
+    border-bottom: 1px solid transparent;
+  }
+  .nav-links a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background:
+      linear-gradient(to bottom, rgba(44,34,24,0.55) 0%, rgba(44,34,24,0.2) 50%, rgba(44,34,24,0.7) 100%),
+      url('https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=1800&q=80') center/cover no-repeat;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 6rem 2rem 4rem;
+    position: relative;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+    background: linear-gradient(to bottom, transparent, var(--ivory));
+  }
+  .hero-badge {
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.5);
+    padding: 6px 20px; border-radius: 40px;
+    margin-bottom: 1.5rem;
+    background: rgba(44,34,24,0.4);
+    backdrop-filter: blur(4px);
+    animation: fadeUp 1s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 700; color: #fff;
+    line-height: 1.05;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.4);
+    animation: fadeUp 1s ease 0.2s both;
+    margin-bottom: 0.3rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold-light); }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    font-weight: 300; color: rgba(255,255,255,0.85);
+    letter-spacing: 0.05em;
+    margin-top: 1rem; margin-bottom: 2.5rem;
+    animation: fadeUp 1s ease 0.4s both;
+  }
+  .hero-scroll {
+    position: absolute; bottom: 140px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.7); font-size: 0.75rem; letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: fadeIn 1.5s ease 1.2s both;
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, transparent, var(--gold));
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes fadeUp { from { opacity:0; transform: translateY(30px); } to { opacity:1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  @keyframes scrollPulse { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(1.4); } }
+
+  /* SECTIONS COMMON */
+  section { position: relative; }
+  .section-header { text-align: center; margin-bottom: 4rem; }
+  .section-eyebrow {
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.35em;
+    text-transform: uppercase; color: var(--crimson);
+    margin-bottom: 0.8rem; display: block;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700; line-height: 1.2; color: var(--charcoal);
+  }
+  .section-title em { font-style: italic; color: var(--crimson); }
+  .divider {
+    width: 60px; height: 2px;
+    background: linear-gradient(to right, var(--crimson), var(--gold));
+    margin: 1.2rem auto 1.5rem;
+  }
+  .section-intro {
+    font-size: 1.15rem; font-weight: 300; line-height: 1.9;
+    color: var(--text-muted); max-width: 620px; margin: 0 auto;
+  }
+
+  /* INTRO STRIP */
+  .intro-strip {
+    background: var(--charcoal);
+    padding: 5rem 3rem;
+  }
+  .intro-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 2px 1fr 2px 1fr;
+    gap: 0; align-items: start;
+  }
+  .intro-divider { background: rgba(201,168,76,0.25); }
+  .intro-item { padding: 0 3rem; text-align: center; }
+  .intro-item .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem; font-weight: 700;
+    color: var(--gold); line-height: 1;
+  }
+  .intro-item .label {
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ivory-dark); margin-top: 0.5rem; display: block;
+  }
+  .intro-item p {
+    font-size: 0.95rem; color: rgba(250,246,238,0.5);
+    margin-top: 0.5rem; line-height: 1.6;
+  }
+
+  /* HERITAGE SECTION */
+  .heritage { padding: 7rem 3rem; background: var(--ivory); }
+  .heritage-inner { max-width: 1200px; margin: 0 auto; }
+  .sites-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 3rem;
+  }
+  .site-card {
+    position: relative; overflow: hidden;
+    aspect-ratio: 3/4;
+    cursor: pointer;
+  }
+  .site-card:first-child { grid-row: span 2; aspect-ratio: auto; }
+  .site-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+    display: block;
+  }
+  .site-card:hover img { transform: scale(1.06); }
+  .site-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(44,34,24,0.9) 0%, rgba(44,34,24,0.1) 60%, transparent 100%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 2rem 1.8rem;
+    transition: background 0.4s;
+  }
+  .site-card:hover .site-overlay { background: linear-gradient(to top, rgba(139,26,26,0.85) 0%, rgba(44,34,24,0.2) 60%, transparent 100%); }
+  .site-tag {
+    font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 0.4rem;
+  }
+  .site-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700; color: #fff; line-height: 1.2;
+  }
+  .site-card:first-child .site-name { font-size: 2.2rem; }
+  .site-desc { font-size: 0.9rem; color: rgba(255,255,255,0.65); margin-top: 0.4rem; line-height: 1.5; }
+
+  /* FESTIVALS */
+  .festivals { padding: 7rem 3rem; background: var(--earth-dark); }
+  .festivals-inner { max-width: 1200px; margin: 0 auto; }
+  .festivals .section-title { color: var(--ivory); }
+  .festivals .section-intro { color: rgba(250,246,238,0.6); }
+  .festivals .section-eyebrow { color: var(--gold); }
+  .fest-list {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .fest-card {
+    background: rgba(250,246,238,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    padding: 2rem 2.2rem;
+    position: relative; overflow: hidden;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .fest-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+    background: var(--gold);
+    transform: scaleY(0); transform-origin: bottom;
+    transition: transform 0.4s ease;
+  }
+  .fest-card:hover { background: rgba(250,246,238,0.09); border-color: rgba(201,168,76,0.5); }
+  .fest-card:hover::before { transform: scaleY(1); }
+  .fest-month {
+    font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 0.6rem;
+  }
+  .fest-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 700; color: var(--ivory);
+    margin-bottom: 0.5rem; line-height: 1.2;
+  }
+  .fest-desc {
+    font-size: 1rem; color: rgba(250,246,238,0.55);
+    line-height: 1.7; font-weight: 300;
+  }
+  .fest-icon {
+    position: absolute; top: 1.8rem; right: 2rem;
+    font-size: 2.5rem; opacity: 0.15;
+  }
+
+  /* TRADITIONS */
+  .traditions { padding: 7rem 3rem; background: var(--ivory-dark); }
+  .traditions-inner { max-width: 1200px; margin: 0 auto; }
+  .trad-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+    margin-top: 3rem;
+  }
+  .trad-img-wrap {
+    position: relative;
+  }
+  .trad-img-wrap img {
+    width: 100%; border-radius: 2px;
+    display: block;
+  }
+  .trad-img-accent {
+    position: absolute; top: -20px; left: -20px; right: 20px; bottom: 20px;
+    border: 2px solid var(--gold);
+    border-radius: 2px; z-index: -1;
+  }
+  .trad-items { display: flex; flex-direction: column; gap: 2rem; }
+  .trad-item {
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--gold-pale);
+    transition: border-color 0.3s;
+  }
+  .trad-item:hover { border-left-color: var(--crimson); }
+  .trad-item h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; font-weight: 700; color: var(--charcoal);
+    margin-bottom: 0.4rem;
+  }
+  .trad-item p { font-size: 1rem; color: var(--text-muted); line-height: 1.75; font-weight: 300; }
+
+  /* QUOTE BANNER */
+  .quote-banner {
+    padding: 6rem 3rem;
+    background:
+      linear-gradient(rgba(44,34,24,0.88), rgba(44,34,24,0.88)),
+      url('https://images.unsplash.com/photo-1544735716-ea9ef790f501?w=1400&q=80') center/cover no-repeat;
+    text-align: center;
+  }
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 400; font-style: italic;
+    color: var(--ivory);
+    max-width: 900px; margin: 0 auto;
+    line-height: 1.4;
+  }
+  .quote-text span { color: var(--gold); }
+  .quote-attr {
+    margin-top: 1.5rem;
+    font-size: 0.8rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: rgba(250,246,238,0.4);
+  }
+
+  /* ART & CRAFT */
+  .artcraft { padding: 7rem 3rem; background: var(--ivory); }
+  .artcraft-inner { max-width: 1200px; margin: 0 auto; }
+  .craft-scroll {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .craft-card {
+    text-align: center;
+    padding: 2rem 1.5rem 2.5rem;
+    border: 1px solid var(--ivory-dark);
+    border-radius: 2px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .craft-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .craft-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .craft-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 700; color: var(--charcoal);
+    margin-bottom: 0.6rem;
+  }
+  .craft-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    padding: 4rem 3rem 2rem;
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem; padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+  .footer-brand h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; color: var(--gold);
+  }
+  .footer-brand p { font-size: 0.9rem; color: rgba(250,246,238,0.4); line-height: 1.7; margin-top: 0.8rem; }
+  .footer-col h4 {
+    font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.2rem;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col ul li a {
+    font-size: 0.9rem; color: rgba(250,246,238,0.45);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--ivory); }
+  .footer-bottom {
+    max-width: 1100px; margin: 1.5rem auto 0;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-bottom p { font-size: 0.8rem; color: rgba(250,246,238,0.25); }
+  .nepal-flag {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8rem; color: rgba(250,246,238,0.3);
+  }
+
+  @media (max-width: 900px) {
+    .sites-grid { grid-template-columns: 1fr 1fr; }
+    .site-card:first-child { grid-row: auto; }
+    .intro-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .intro-divider { display: none; }
+    .fest-list { grid-template-columns: 1fr; }
+    .trad-grid { grid-template-columns: 1fr; }
+    .craft-scroll { grid-template-columns: repeat(2, 1fr); }
+    .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Nepal <span>Heritage</span></a>
+  <ul class="nav-links">
+    <li><a href="#heritage">Heritage Sites</a></li>
+    <li><a href="#festivals">Festivals</a></li>
+    <li><a href="#traditions">Traditions</a></li>
+    <li><a href="#artcraft">Arts & Crafts</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Discover the Soul of the Himalayas</div>
+  <h1>Incredible<br/><em>Nepal</em></h1>
+  <p class="hero-sub">Where ancient temples whisper eternal stories<br/>and culture breathes in every prayer flag</p>
+  <div class="hero-scroll">
+    <span>Explore</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- INTRO STRIP -->
+<div class="intro-strip">
+  <div class="intro-grid">
+    <div class="intro-item">
+      <div class="num">10</div>
+      <span class="label">UNESCO Sites</span>
+      <p>Cultural and natural world heritage treasures</p>
+    </div>
+    <div class="intro-divider"></div>
+    <div class="intro-item">
+      <div class="num">125+</div>
+      <span class="label">Ethnic Groups</span>
+      <p>Each with unique language, dress & tradition</p>
+    </div>
+    <div class="intro-divider"></div>
+    <div class="intro-item">
+      <div class="num">3000+</div>
+      <span class="label">Years of History</span>
+      <p>Ancient kingdoms, dynasties & living culture</p>
+    </div>
+  </div>
+</div>
+
+<!-- HERITAGE SITES -->
+<section class="heritage" id="heritage">
+  <div class="heritage-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">World Heritage</span>
+      <h2 class="section-title">Sacred <em>Sites</em> & Monuments</h2>
+      <div class="divider"></div>
+      <p class="section-intro">From the medieval durbar squares of the Kathmandu Valley to the living birthplace of the Buddha, Nepal's heritage sites are the architecture of a civilization.</p>
+    </div>
+
+    <div class="sites-grid">
+      <div class="site-card">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Pashupatinath Temple"/>
+        <div class="site-overlay">
+          <span class="site-tag">UNESCO · Hindu</span>
+          <h3 class="site-name">Pashupatinath Temple</h3>
+          <p class="site-desc">The holiest Hindu shrine in Nepal, dating back to the 5th century. A sacred sanctuary on the banks of the Bagmati river.</p>
+        </div>
+      </div>
+      <div class="site-card">
+        <img src="https://images.unsplash.com/photo-1553153426-a2500dfbd073?w=600&q=80" alt="Boudhanath Stupa"/>
+        <div class="site-overlay">
+          <span class="site-tag">UNESCO · Buddhist</span>
+          <h3 class="site-name">Boudhanath Stupa</h3>
+          <p class="site-desc">One of the largest Buddhist stupas in the world, its all-seeing eyes watch over Kathmandu Valley.</p>
+        </div>
+      </div>
+      <div class="site-card">
+        <img src="https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=600&q=80" alt="Swayambhunath"/>
+        <div class="site-overlay">
+          <span class="site-tag">UNESCO · Ancient</span>
+          <h3 class="site-name">Swayambhunath</h3>
+          <p class="site-desc">The self-arisen stupa, crowning a hill above Kathmandu — among the oldest religious sites in Nepal.</p>
+        </div>
+      </div>
+      <div class="site-card">
+        <img src="https://images.unsplash.com/photo-1585016495481-91edd4d5db19?w=600&q=80" alt="Patan Durbar Square"/>
+        <div class="site-overlay">
+          <span class="site-tag">Medieval · Newari</span>
+          <h3 class="site-name">Patan Durbar Square</h3>
+          <p class="site-desc">A masterpiece of Newari architecture — temples, courtyards and palaces of astonishing craftsmanship.</p>
+        </div>
+      </div>
+      <div class="site-card">
+        <img src="https://images.unsplash.com/photo-1600431521340-491eca880813?w=600&q=80" alt="Lumbini"/>
+        <div class="site-overlay">
+          <span class="site-tag">UNESCO · Birthplace of Buddha</span>
+          <h3 class="site-name">Lumbini</h3>
+          <p class="site-desc">The sacred birthplace of Siddhartha Gautama, the Buddha — a pilgrimage site for millions worldwide.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FESTIVALS -->
+<section class="festivals" id="festivals">
+  <div class="festivals-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">Living Culture</span>
+      <h2 class="section-title" style="color:var(--ivory)">Festivals <em style="color:var(--gold)">& Celebrations</em></h2>
+      <div class="divider"></div>
+      <p class="section-intro">Nepal celebrates over 50 festivals a year. Each one is a vivid tapestry of devotion, community, music, and ancient ritual that has survived for millennia.</p>
+    </div>
+
+    <div class="fest-list">
+      <div class="fest-card">
+        <div class="fest-icon">🪔</div>
+        <div class="fest-month">October / November</div>
+        <h3 class="fest-name">Tihar</h3>
+        <p class="fest-desc">The Festival of Lights — five days of illuminating homes with oil lamps and marigold garlands, honoring crows, dogs, cows, and siblings. Known as Nepal's Diwali.</p>
+      </div>
+      <div class="fest-card">
+        <div class="fest-icon">🥁</div>
+        <div class="fest-month">October / November</div>
+        <h3 class="fest-name">Dashain</h3>
+        <p class="fest-desc">The grandest Hindu festival in Nepal. Fifteen days celebrating the goddess Durga's victory over evil, with kite flying, swings, buffalo sacrifices and family reunions.</p>
+      </div>
+      <div class="fest-card">
+        <div class="fest-icon">🎭</div>
+        <div class="fest-month">August</div>
+        <h3 class="fest-name">Indra Jatra</h3>
+        <p class="fest-desc">An 8-day Kathmandu festival honoring the rain god Indra, famous for the chariot procession of the living goddess Kumari through the streets of the old city.</p>
+      </div>
+      <div class="fest-card">
+        <div class="fest-icon">🌸</div>
+        <div class="fest-month">March / April</div>
+        <h3 class="fest-name">Holi</h3>
+        <p class="fest-desc">The joyous festival of colors. Streets erupt in vivid powders and water, celebrating the arrival of spring and the triumph of good over evil across the Terai and hills.</p>
+      </div>
+      <div class="fest-card">
+        <div class="fest-icon">🏺</div>
+        <div class="fest-month">July / August</div>
+        <h3 class="fest-name">Rato Machhendranath</h3>
+        <p class="fest-desc">Patan's legendary chariot festival — the longest chariot festival in the world, lasting months. A Newari tradition ensuring rain and harvest for the valley.</p>
+      </div>
+      <div class="fest-card">
+        <div class="fest-icon">⛰️</div>
+        <div class="fest-month">May / June</div>
+        <h3 class="fest-name">Buddha Jayanti</h3>
+        <p class="fest-desc">The birthday of Siddhartha Gautama celebrated with candles, processions and prayers in Lumbini, Swayambhunath and Boudhanath — a day of deep spiritual reflection.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRADITIONS -->
+<section class="traditions" id="traditions">
+  <div class="traditions-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">Living Heritage</span>
+      <h2 class="section-title">Ancient <em>Traditions</em></h2>
+      <div class="divider"></div>
+      <p class="section-intro">Nepal's traditions are not museum pieces — they are alive, practiced daily in homes, temples and mountain communities across the country.</p>
+    </div>
+
+    <div class="trad-grid">
+      <div class="trad-img-wrap">
+        <img src="https://images.unsplash.com/photo-1615529328331-f8917597711f?w=800&q=80" alt="Nepal traditions"/>
+        <div class="trad-img-accent"></div>
+      </div>
+      <div class="trad-items">
+        <div class="trad-item">
+          <h3>Kumari — The Living Goddess</h3>
+          <p>A young Newari girl selected by ancient rites becomes the embodiment of the divine goddess Taleju, venerated by Hindus and Buddhists alike until she reaches puberty.</p>
+        </div>
+        <div class="trad-item">
+          <h3>Namaste & the Art of Greeting</h3>
+          <p>The pressed palms and bowed head carry a profound spiritual meaning: "I bow to the divine in you." It reflects Nepal's deep culture of reverence and humility.</p>
+        </div>
+        <div class="trad-item">
+          <h3>Thanka Painting</h3>
+          <p>Intricate scrolled paintings of Buddhist and Hindu deities, created with mineral pigments over weeks or months, serving as aids for meditation and devotional worship.</p>
+        </div>
+        <div class="trad-item">
+          <h3>Mani Walls & Prayer Flags</h3>
+          <p>In mountain communities, walls of carved mantra stones and fluttering prayer flags carry mantras into the wind — every gust a thousand prayers sent to the heavens.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-banner">
+  <blockquote class="quote-text">
+    "Nepal is not just a destination —<br/>it is <span>a feeling</span> that lives in you long after you leave."
+  </blockquote>
+  <p class="quote-attr">— Ancient Proverb of the Himalayan People</p>
+</div>
+
+<!-- ARTS & CRAFTS -->
+<section class="artcraft" id="artcraft">
+  <div class="artcraft-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">Artisan Culture</span>
+      <h2 class="section-title">Arts, Crafts <em>& Music</em></h2>
+      <div class="divider"></div>
+      <p class="section-intro">Nepal's artistic traditions span 2,000 years of continuous practice — from intricate metalwork to devotional music that moves between temples and mountain winds.</p>
+    </div>
+
+    <div class="craft-scroll">
+      <div class="craft-card">
+        <div class="craft-icon">🏺</div>
+        <h3>Woodcarving</h3>
+        <p>Extraordinarily detailed carvings on temple struts, windows, and peacock windows — a Newari art refined over centuries.</p>
+      </div>
+      <div class="craft-card">
+        <div class="craft-icon">🪡</div>
+        <h3>Pashmina Weaving</h3>
+        <p>The finest cashmere in the world, handwoven in Nepal from Himalayan mountain goats — warm, lightweight and exquisite.</p>
+      </div>
+      <div class="craft-card">
+        <div class="craft-icon">🎎</div>
+        <h3>Metalwork & Statues</h3>
+        <p>Lost-wax bronze casting and repousse metalwork — Patan's artisans have created divine statues for over a millennium.</p>
+      </div>
+      <div class="craft-card">
+        <div class="craft-icon">🎵</div>
+        <h3>Sacred Music</h3>
+        <p>The madal drum, sarangi and bansuri flute form the heartbeat of Nepal's folk and devotional music tradition.</p>
+      </div>
+      <div class="craft-card">
+        <div class="craft-icon">🧵</div>
+        <h3>Dhaka Weaving</h3>
+        <p>Geometric patterned cloth hand-woven in Palpa, used in traditional dress and gifted at auspicious occasions.</p>
+      </div>
+      <div class="craft-card">
+        <div class="craft-icon">🏔️</div>
+        <h3>Singing Bowls</h3>
+        <p>Tibetan and Newari metal bowls that resonate with healing frequencies — used in meditation and sound therapy.</p>
+      </div>
+      <div class="craft-card">
+        <div class="craft-icon">📜</div>
+        <h3>Lokta Paper</h3>
+        <p>Handmade from the bark of the lokta bush growing above 6,000 feet — Nepal's unique handmade paper craft.</p>
+      </div>
+      <div class="craft-card">
+        <div class="craft-icon">💎</div>
+        <h3>Gem Jewellery</h3>
+        <p>Turquoise, coral, and semi-precious stones set in silver — worn by Tamang, Sherpa and hill communities for centuries.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h2>Nepal Heritage</h2>
+      <p>A celebration of Nepal's 3,000 years of living culture, sacred traditions, and the warmth of its people. From the Terai plains to the roof of the world.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#heritage">Heritage Sites</a></li>
+        <li><a href="#festivals">Festivals</a></li>
+        <li><a href="#traditions">Traditions</a></li>
+        <li><a href="#artcraft">Arts & Crafts</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>About Nepal</h4>
+      <ul>
+        <li><a href="#">Kathmandu Valley</a></li>
+        <li><a href="#">The Himalayas</a></li>
+        <li><a href="#">Ethnic Groups</a></li>
+        <li><a href="#">Languages</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Nepal Heritage — Celebrating the living culture of Nepal</p>
+    <div class="nepal-flag">🇳🇵 &nbsp; Made with devotion</div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fest-card, .trad-item, .craft-card, .site-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+
+  document.querySelectorAll('.fest-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 0.08}s`;
+  });
+  document.querySelectorAll('.craft-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 0.06}s`;
+  });
+</script>
+</body>
+</html>
